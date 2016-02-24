@@ -31,18 +31,5 @@ Route::group(['middleware' => ['web']], function () {
         return view('welcome');
     });
 
-    Route::post('/', function (Request $request) {
-//        dd($request->all());
-        $validator = Validator::make($request->all(),[
-            'email.*' => 'required|email'
-        ],[
-            'email.*' => 'This address must be formatted properly.'
-        ]);
-
-        if ($validator->fails()){
-            return back()->withInput()->withErrors($validator);
-        }
-
-        return 'Validation successful. Invite those fools.';
-    });
+    Route::post('/', 'InvitationsController@store');
 });
