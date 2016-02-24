@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Http\Request;
-//use Illuminate\Contracts\Validation\Validator;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +35,8 @@ Route::group(['middleware' => ['web']], function () {
 //        dd($request->all());
         $validator = Validator::make($request->all(),[
             'email.*' => 'required|email'
+        ],[
+            'email.*' => 'This address must be formatted properly.'
         ]);
 
         if ($validator->fails()){
