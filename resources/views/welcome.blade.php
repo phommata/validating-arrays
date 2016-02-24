@@ -1,45 +1,37 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Laravel</title>
+<head>
+    <title>Laravel</title>
 
-        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
-        <style>
-            html, body {
-                height: 100%;
-            }
+</head>
+<body>
+<div class="container">
+    <h1>Invite Up to 5 People</h1>
 
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato';
-            }
+    <form method="POST">
+        {!! csrf_field() !!}
 
-            .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
-
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
-
-            .title {
-                font-size: 96px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="content">
-                <div class="title">Laravel 5</div>
-            </div>
+        <div class="form-group">
+            <label class="control-label" for="email-1">Email:</label>
+            <input type="text" id="email-1" name="email[]" class="form-control" value="{{ old('email.1' ) }}">
         </div>
-    </body>
+
+        <div class="form-group">
+            <label class="control-label" for="email-2">Email:</label>
+            <input type="text" id="email-2" name="email[]" class="form-control" value="{{ old('email.2' ) }}">
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="email-3">Email:</label>
+            <input type="text" id="email-3" name="email[]" class="form-control" value="{{ old('email.3' ) }}">
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>
+</body>
 </html>

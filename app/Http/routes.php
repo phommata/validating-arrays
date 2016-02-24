@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Http\Request;
+//use Illuminate\Contracts\Validation\Validator;
+
 /*
 |--------------------------------------------------------------------------
 | Routes File
@@ -11,9 +14,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 /*
 |--------------------------------------------------------------------------
@@ -27,5 +28,20 @@ Route::get('/', function () {
 */
 
 Route::group(['middleware' => ['web']], function () {
-    //
+    Route::get('/', function () {
+        return view('welcome');
+    });
+
+    Route::post('/', function (Request $request) {
+//        dd($request->all());
+        $validator = Validator::make($request->all(),[
+            'email.*' => 'required|email'
+        ]);
+
+        if ($validator->fails()){
+            return back()->withInput()->withErrors($validator);
+        }
+
+        return 'Validation successful. Invite those fools.';
+    });
 });
